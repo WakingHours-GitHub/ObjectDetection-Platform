@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel='stylesheet' href='../static/css/extra_css.css'> -->
+    <link rel="stylesheet" href="../static/css/style_all.css">
+    <link rel="stylesheet" href="../static/css/layout.css">
+    <link rel='stylesheet' href='../static/css/style_ele.css'>
+
+    <script src='../static/js/client.js'></script>
+    <script src="../static/js/modernizr.js"></script>
+    <script src="../static/js/init.js"></script>
+
+    <title>
+        {% block title %}
+            Object Detection Platform
+        {% endblock %}
+    </title> <!-- default title -->
+    
+    {% block head %}{% endblock %}
+
+    <style>
+        /* copyright */
+        .copyright {
+            margin: 0;
+            padding: 0;
+        }
+
+        .copyright li {
+            display: inline-block;
+            margin: 0;
+            padding: 0;
+            line-height: 24px;
+        }
+
+        .copyright li {
+            display: inline;
+        }
+
+        .copyright li:before {
+            content: "\2022";
+            padding-left: 10px;
+            padding-right: 10px;
+            color: #095153;
+        }
+
+        .copyright li:first-child:before {
+            display: none;
+        }
+
+        #bottom-box {
+            width: 100%;
+            align-self: center;
+            text-align: center;
+            margin: 0 auto;
+            position: absolute;
+            bottom: 0px;
+            
+        }
+
+        #nav li a:hover{
+            background-color:#ff8100;
+        }
+
+    
+    
+    </style>
+
+
+</head>
+<body>
+    <box id="nav-box">
+        <header id="home">
+            <nav id="nav-wrap">
+                <ul id="nav" class="nav">
+                    <li><a class="smoothscroll" href="/">Home</a></li>
+                    <li><a class="smoothscroll" href="/realtime">Realtime</a></li>
+                    <li><a class="smoothscroll" href="/about_me">About Me</a></li>
+                    <li><a class="smoothscroll" href="/architecture">Architecture</a></li>
+                </ul> <!-- end #nav -->
+            </nav> <!-- end #nav-wrap -->
+        </header>
+    </box>
+
+
+    {% block body %}
+    {% endblock %}
+
+
+    <box id="bottom-box">
+        <ul class="copyright">
+            <li>&copy; Copyright 2022 WakingHours</li>
+            <li>Design by <a href="http://121.5.102.253/" title="Styleshout" target="_blank">Waking Hours</a></li>
+         </ul>
+    </box>
+
+
+    
+
+    
+</body>
+</html>
