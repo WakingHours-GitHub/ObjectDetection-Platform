@@ -5,7 +5,7 @@ import numpy as np
 from config import *
 import os
 import sys
-
+import base64
 
 # yolov5版本
 from yolov5.yolo import YOLO
@@ -20,7 +20,7 @@ app = Flask(__name__, static_folder="./static", template_folder="templates")
 
 yolo = YOLO()
 
-@app.route("/image", methods=["POST"])
+@app.route("/image", methods=["POST", ""])
 def parse_image():
     image = request.files["image"] # 从form表单种, 拿出image的input.
     image_name = image.filename
@@ -30,11 +30,32 @@ def parse_image():
     if image_name.split(".")[-1] in IMAGE_FILE: # 是图片
         source_img = cv.imread(file_path) # read image
         img = Image.fromarray(np.uint8(source_img)) # 转换为Image. 
-        
-        img = np.array(yolo.detect_image(img))
-        _, img_encoded = cv.imencode('.jpg', img)
-        response = img_encoded.tobytes()
-        return Response(response=response, status=200, mimetype='image/jpg')
+        img_torch, box_information = yolo.detect_image(img)
+        print(box_information)
+        img = np.array(img_torch)
+        img = np.hstack([source_img, img])
+        cv.imwrite(file_path, img)
+
+        # _, img_encoded = cv.imencode('.jpg', img)
+
+        try:
+            img_stream = ''
+            with open(file_path, 'rb') as img_f:
+                img_stream = img_f.read()
+                img_stream = base64.b64encode(img_stream).decode()
+            return render_template('./image_process.html', image_url=img_stream)
+        except:
+            return render_template('./image_process.html')
+
+
+
+        # response = img_encoded.tobytes()
+        # return Response(response=response, status=200, mimetype='image/jpg')
+
+    elif image_name.split(".")[-1] in VIDEO_FILE: # 视频
+        with open(join(SAVE_PATH, "./file_name.txt"), "w") as f_writer:
+            f_writer.write(image_name) # 名字到文件里
+        return render_template("video_process.html")
 
 
 
@@ -58,12 +79,33 @@ def architecure():
 
 
 
+def gen(camera):
+    """Video streaming generator function."""
+    while True:
+        frame = camera.get_frame()
+        yield (b'--frame\r\n'
+                b''b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+@app.route('/video_feed')
+def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+
+    return Response(
+        gen(Camera()),
+        mimetype='multipart/x-mixed-replace; boundary=frame'
+    )
+
+
 
 
 # check file if exist.
 def init():
     if not os.path.exists(SAVE_PATH):
         os.mkdir(SAVE_PATH)
+
+    if not os.path.exists(LOG_PATH):
+        os.mkdir(LOG_PATH)
 
     for ele in os.listdir(SAVE_PATH):
         ele_path = os.path.join(SAVE_PATH, ele)

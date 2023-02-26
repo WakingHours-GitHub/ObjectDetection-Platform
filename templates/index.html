@@ -23,11 +23,14 @@
 {% block body %}
 <div>
     <div class='center'>
-        <div class='title'>Object Detection Platform Based on YoLo</div>
+        <div class='title'>Object Detection Platform Based on YoLo 🚀</div>
         <div class="show-box"> <!--展示的框-->
-            <img id='image-picked' class='no-display' alt='Chosen Image' height='250' />
-            <video autoplay="autoplay" id='image-picked1' class='no-display' alt='Chosen Image' height='250' />
+            {% block showbox %}
+                <img id='image-picked' class='no-display' alt='Chosen Image' height='250' />
+                <video autoplay="autoplay" id='image-picked1' class='no-display' alt='Chosen Image' height='250' />
+            {% endblock %}
         </div>
+
 
         <div class='content'> <!-- 表单 -->
             <div class='no-display'> <!-- 不显示 -->

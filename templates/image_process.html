@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+
+{% block title %}
+    image process
+{% endblock %}
+
+
+{% block head %}
+{{ super() }}
+{% endblock %}
+
+{% block showbox %}
+    <img src="data:jpeg;base64, {{ image_url }}" height='240px' alt="fault" />
+{% endblock %}

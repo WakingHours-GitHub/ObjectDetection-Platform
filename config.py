@@ -19,3 +19,4 @@ VIDEO_FILE = ['mp4','avi']
 STOP = 0
 
 SAVE_PATH = "./file"
+LOG_PATH = "./logs"
