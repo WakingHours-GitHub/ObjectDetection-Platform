@@ -6,6 +6,7 @@ from config import *
 import os
 import sys
 import base64
+from utils.camera import Camera
 
 # yolov5版本
 from yolov5.yolo import YOLO
@@ -66,10 +67,12 @@ def parse_image():
 
 @app.route("/")
 def main_page():
-    
     return render_template("./index.html")
 
 
+@app.route("/realtime")
+def realtime():
+    return render_template("video_process.html")
 
 
 
@@ -86,13 +89,13 @@ def gen(camera):
         yield (b'--frame\r\n'
                 b''b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-
+# url_for(video_feed) # 找到这个函数, 返回response(gen产生的yield.).
 @app.route('/video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
 
     return Response(
-        gen(Camera()),
+        gen(Camera(yolo)),
         mimetype='multipart/x-mixed-replace; boundary=frame'
     )
 

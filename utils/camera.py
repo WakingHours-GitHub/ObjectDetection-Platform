@@ -6,10 +6,6 @@ import sys
 import os
 from PIL import Image
 
-from yolov5.yolo import YOLO
-from yolov5 import *
-from unet.unet import Unet
-from unet import *
 
 from utils import global_manager
 
@@ -19,22 +15,22 @@ from utils import global_manager
 
 
 runtime_path = sys.path[0]
-yolo = YOLO()
-unet = Unet()
+
 
 class Camera(BaseCamera):
 
-    def __init__(self):
+    def __init__(self, yolo):
         super(Camera, self).__init__()
+        self.yolo = yolo
 
 
 
     @staticmethod
     def frames(): # 重写BaseCamera的frames类
-        real_time_type = global_manager.get_value("real_time_type")
-        is_stop = global_manager.get_value("is_stop")
+        # real_time_type = global_manager.get_value("real_time_type")
+        # is_stop = global_manager.get_value("is_stop")
 
-        print("camera: real_time_type", real_time_type)
+        # print("camera: real_time_type", real_time_type)
 
         if "video" == real_time_type:
             print("video")
@@ -55,16 +51,6 @@ class Camera(BaseCamera):
                     break
                 res, frame = cap.read()
                 # frame_hsv = cv.cvtColor(frame, cv.COLOR_BGR2HSV)
-
-                """
-                        h, w, _ = source_img.shape
-            if h > 2000 or w > 2000:
-                h = h // 2
-                w = w // 2
-                source_img = cv.resize(source_img, (int(w), int(h)))
-            # img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
-            img = Image.fromarray(np.uint8(source_img)) # 转换为Image. 
-            img = np.array(yolo.detect_image(img))"""
 
                 if res:
                     frame_counter += 1
