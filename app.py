@@ -95,7 +95,7 @@ def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
 
     return Response(
-        gen(Camera(yolo)),
+        gen(Camera()),
         mimetype='multipart/x-mixed-replace; boundary=frame'
     )
 
