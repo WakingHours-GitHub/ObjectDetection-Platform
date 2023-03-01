@@ -85,7 +85,15 @@ def architecure():
 def gen(camera):
     """Video streaming generator function."""
     while True:
-        frame = camera.get_frame()
+        frame, result = camera.get_frame()
+        # frame = camera.get_frame()
+        yield (b'--frame\r\n'
+                b''b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
+
+
+def gen_text(camera):
+    while True:
+        _, frame = camera.get_frame()
         yield (b'--frame\r\n'
                 b''b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
@@ -99,6 +107,12 @@ def video_feed():
         mimetype='multipart/x-mixed-replace; boundary=frame'
     )
 
+@app.route('/text_feed')
+def text_feed():
+    return Response(
+        gen_text(Camera()),
+        mimetype='multipart/x-mixed-replace; boundary=frame'
+    )
 
 
 

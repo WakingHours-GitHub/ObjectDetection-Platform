@@ -11,13 +11,43 @@
 
 {% block head %}
     {{ super() }}
+    <style> 
+        #horizontally {
+            /* float: left; */
+            display: flex;
+            flex-direction: row;
+
+            justify-content: space-between;
+            margin-top: 2%;
+
+            width: 100%;
+
+        }
+
+        #img {
+            /* background-color: aquamarine; */
+            /* display: block; */
+            width: 50%;
+        }
+
+        #text {
+            /* background-color: black; */
+            /* display: block; */
+            width: 49%;
+        }
+    </style>
 {% endblock %}
 
 
 {% block body %}
 
-<div>
-    <img src="{{ url_for('video_feed') }}" width='1000px' style="top: 100px;">
+<div id="horizontally">
+    <div id="img">
+        <img src="{{ url_for('video_feed') }}" style="width: 100%;">
+    </div>
+    <div id="text">
+        <img src="{{ url_for('text_feed') }}" style="width: 100%;">
+    </div>
 </div>
 
 {% endblock %}
