@@ -46,6 +46,7 @@ def parse_image():
                 img_stream = base64.b64encode(img_stream).decode()
             return render_template('./image_process.html', image_url=img_stream)
         except:
+            print("image parse faild")
             return render_template('./image_process.html')
 
 
@@ -55,8 +56,9 @@ def parse_image():
 
     elif image_name.split(".")[-1] in VIDEO_FILE: # 视频
         with open(join(SAVE_PATH, "./file_name.txt"), "w") as f_writer:
-            f_writer.write(image_name) # 名字到文件里
-        return render_template("video_process.html")
+            f_writer.write(image_name) # 将文件名字写到文件里
+
+        return render_template("video_process.html") # 返回。
 
 
 
@@ -72,12 +74,15 @@ def main_page():
 
 @app.route("/realtime")
 def realtime():
+    global IS_REALTIME
+    IS_REALTIME = True
     return render_template("video_process.html")
 
 
 
 @app.route("/architecture")
 def architecure():
+    
     return render_template("./architecutre.html")
 
 
