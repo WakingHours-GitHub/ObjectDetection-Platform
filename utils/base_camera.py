@@ -58,6 +58,7 @@ class BaseCamera(object):
     frame = None  # current frame is stored here by background thread
     last_access = 0  # time of last client access to the camera
     event = CameraEvent()
+    is_realtime = None
 
     def __init__(self):
         """Start the background camera thread if it isn't running yet."""

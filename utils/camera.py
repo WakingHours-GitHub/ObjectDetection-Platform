@@ -23,13 +23,13 @@ class Camera(BaseCamera):
 
     def __init__(self, is_realtime=True):
         super(Camera, self).__init__()
-        self.is_realtime = is_realtime
+        # self.is_realtime = is_realtime
+        BaseCamera.is_realtime = is_realtime
 
     @staticmethod
-    def frames(self): # 重写BaseCamera的frames类
-        global IS_REALTIME
-        
-        if IS_REALTIME:
+    def frames(): # 重写BaseCamera的frames类
+        print(BaseCamera.is_realtime)
+        if BaseCamera.is_realtime:
             print("realtime mode")
             cap = cv.VideoCapture(0) # get local machine camera.
             

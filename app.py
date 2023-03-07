@@ -55,8 +55,7 @@ def parse_image():
         # return Response(response=response, status=200, mimetype='image/jpg')
 
     elif image_name.split(".")[-1] in VIDEO_FILE: # 视频
-        global IS_REALTIME
-        IS_REALTIME = False # 是视频。 
+        
         print("%s Video uploading, please wait. " % image_name)
         with open(join(SAVE_PATH, "./file_name.txt"), "w") as f_writer:
             f_writer.write(image_name) # 将文件名字写到文件里
@@ -77,15 +76,12 @@ def main_page():
 
 @app.route("/realtime")
 def realtime():
-    global IS_REALTIME
-    IS_REALTIME = True
     return render_template("video_process.html")
 
 
 
 @app.route("/architecture")
 def architecure():
-    
     return render_template("./architecutre.html")
 
 
@@ -93,7 +89,7 @@ def architecure():
 def gen(camera):
     """Video streaming generator function."""
     while True:
-        frame, result = camera.get_frame()
+        frame, _ = camera.get_frame()
         # frame = camera.get_frame()
         yield (b'--frame\r\n'
                 b''b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
