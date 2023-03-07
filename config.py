@@ -21,6 +21,5 @@ STOP = 0
 SAVE_PATH = "./file"
 LOG_PATH = "./logs"
 
-IS_REALTIME = True
 
 # global IS_REALTIME

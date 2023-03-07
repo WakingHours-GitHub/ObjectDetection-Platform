@@ -7,6 +7,7 @@ import os
 import sys
 import base64
 from utils.camera import Camera
+from utils import global_manager as gm
 
 # yolov5版本
 from yolov5.yolo import YOLO
@@ -21,7 +22,7 @@ app = Flask(__name__, static_folder="./static", template_folder="templates")
 
 yolo = YOLO()
 
-@app.route("/image", methods=["POST", ""])
+@app.route("/image", methods=["POST"])
 def parse_image():
     image = request.files["image"] # 从form表单种, 拿出image的input.
     image_name = image.filename
@@ -55,7 +56,8 @@ def parse_image():
         # return Response(response=response, status=200, mimetype='image/jpg')
 
     elif image_name.split(".")[-1] in VIDEO_FILE: # 视频
-        
+        gm.set_value("is_realtime", False)
+
         print("%s Video uploading, please wait. " % image_name)
         with open(join(SAVE_PATH, "./file_name.txt"), "w") as f_writer:
             f_writer.write(image_name) # 将文件名字写到文件里
@@ -71,11 +73,14 @@ def parse_image():
 
 @app.route("/")
 def main_page():
+    gm.set_value("is_realtime", None)
     return render_template("./index.html")
 
 
 @app.route("/realtime")
 def realtime():
+    gm.set_value("is_realtime", True)
+
     return render_template("video_process.html")
 
 
@@ -122,6 +127,7 @@ def text_feed():
 
 # check file if exist.
 def init():
+    gm._init() # 初始化.
     if not os.path.exists(SAVE_PATH):
         os.mkdir(SAVE_PATH)
 

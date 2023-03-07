@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
+
 def _init():#初始化
     global _global_dict
     _global_dict = {}
