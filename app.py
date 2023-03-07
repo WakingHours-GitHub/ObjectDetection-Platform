@@ -55,9 +55,12 @@ def parse_image():
         # return Response(response=response, status=200, mimetype='image/jpg')
 
     elif image_name.split(".")[-1] in VIDEO_FILE: # 视频
+        global IS_REALTIME
+        IS_REALTIME = False # 是视频。 
+        print("%s Video uploading, please wait. " % image_name)
         with open(join(SAVE_PATH, "./file_name.txt"), "w") as f_writer:
             f_writer.write(image_name) # 将文件名字写到文件里
-
+        
         return render_template("video_process.html") # 返回。
 
 

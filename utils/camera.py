@@ -21,12 +21,13 @@ runtime_path = sys.path[0]
 
 class Camera(BaseCamera):
 
-    def __init__(self):
+    def __init__(self, is_realtime=True):
         super(Camera, self).__init__()
 
     @staticmethod
     def frames(): # 重写BaseCamera的frames类
         global IS_REALTIME
+        
         if IS_REALTIME:
             print("realtime mode")
             cap = cv.VideoCapture(0) # get local machine camera.

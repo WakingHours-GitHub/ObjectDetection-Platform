@@ -99,7 +99,7 @@ class BaseCamera(object):
 
             # if there hasn't been any clients asking for frames in
             # the last 10 seconds then stop the thread
-            if time.time() - BaseCamera.last_access > 0.5:
+            if time.time() - BaseCamera.last_access > 0.5: # 多长时间关闭线程。
                 frames_iterator.close()
                 print('Stopping camera thread due to inactivity.')
                 break
