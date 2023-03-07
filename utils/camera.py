@@ -23,9 +23,10 @@ class Camera(BaseCamera):
 
     def __init__(self, is_realtime=True):
         super(Camera, self).__init__()
+        self.is_realtime = is_realtime
 
     @staticmethod
-    def frames(): # 重写BaseCamera的frames类
+    def frames(self): # 重写BaseCamera的frames类
         global IS_REALTIME
         
         if IS_REALTIME:
