@@ -23,6 +23,9 @@ runtime_path = sys.path[0]
 
 def detecti_img(frame):
     start_time = time.time()
+    # h, w, _ = frame.shape
+    # print(h, w) # 480 640 in camera
+
     img = Image.fromarray(np.uint8(frame))
     img, result = yolo.detect_image(img)
     detection_img = np.array(img)
@@ -49,12 +52,12 @@ def detecti_img(frame):
             coordinate = tuple((centre_x, centre_y))
 
             format_result = label.__str__()+" "+conf.__str__()+" "+coordinate.__str__()
-            cv.putText(result_image, f"{format_result}", (1, 20*(index+1)), cv.FONT_ITALIC, 0.7, (0, 0, 0), 1)
+            cv.putText(result_image, f"{format_result}", (1, 20*(index+1)), cv.FONT_ITALIC, 0.75, (0, 0, 0), 1)
         print(format_result)
 
     frame = np.hstack([frame, detection_img])
     
-    cv.putText(frame, f"FPS:{fps.__str__():4.4}", (5, 20), cv.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
+    cv.putText(frame, f"FPS:{fps.__str__():4.4}", (5, 30), cv.FONT_HERSHEY_SIMPLEX, 0.75, (0, 0, 255), 2)
 
     return frame, result_image
 
@@ -73,6 +76,8 @@ class Camera(BaseCamera):
             
             if not cap.isOpened():
                 return RuntimeError("can't open local camera!")
+            cap.set(3, 720)
+            cap.set(4, 1280)
             
             # while True:
             #     res, frame = cap.read() # read.
