@@ -8,7 +8,15 @@ from PIL import Image
 import math
 from yolov5.yolo import YOLO
 from utils import global_manager as gm
+
 from config import *
+import datetime
+
+
+
+
+
+
 join = lambda *args: os.path.join(*args)
 
 yolo = YOLO()
@@ -34,7 +42,10 @@ def detecti_img(frame):
     fps = 1 / seconds
 
     result_image = np.full_like(img, 255)
-    
+    now = datetime.datetime.now() # get current time. 
+    current_time = now.strftime("%Y-%m-%d %H:%M:%S").__str__()
+    print(current_time)
+
     if result:
         format_result = "" # reset
         # print(result)
@@ -54,6 +65,14 @@ def detecti_img(frame):
             format_result = label.__str__()+" "+conf.__str__()+" "+coordinate.__str__()
             cv.putText(result_image, f"{format_result}", (1, 20*(index+1)), cv.FONT_ITALIC, 0.75, (0, 0, 0), 1)
         print(format_result)
+    
+    print(current_time.split(" ")[0])
+    format_write = current_time + ":" + "\n" + format_result + "\n" + "===============================" + "\n"
+
+    with open(join(runtime_path, "logs", current_time.split(" ")[0]+".log"), 'a') as f:
+        f.write(format_write)
+        
+        
 
     frame = np.hstack([frame, detection_img])
     
@@ -149,6 +168,8 @@ class Camera(BaseCamera):
             print("not uninitialized")
 
         while True:
+            # now = datetime.datetime.now() # get current time. 
+            # current_time = now.strftime("%Y-%m-%d %H:%M:%S")
             res, frame = cap.read()
             if res:
                 if not gm.get_value("isrealtime"):
@@ -159,12 +180,9 @@ class Camera(BaseCamera):
                         
                 frame, result_image = detecti_img(frame)
                 yield cv.imencode('.jpg', frame)[1].tobytes(), cv.imencode('.jpg', result_image)[1].tobytes() # to bytes.
-            
-                
 
             else:
                 continue # 
-
 
             cv.waitKey(50)
         cap.release()
