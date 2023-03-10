@@ -89,7 +89,9 @@ def realtime():
 def architecure():
     return render_template("./architecutre.html")
 
-
+@app.route("/about_me")
+def about_me():
+    return render_template("./About_me/index.html")
 
 def gen(camera):
     """Video streaming generator function."""
