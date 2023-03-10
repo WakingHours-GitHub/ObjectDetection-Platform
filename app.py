@@ -64,9 +64,6 @@ def parse_image():
         
         return render_template("video_process.html") # 返回。
 
-
-
-
     return render_template("./index.html")
 
 
