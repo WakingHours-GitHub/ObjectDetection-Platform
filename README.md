@@ -2,7 +2,7 @@
  
 It's an amazing Objection Platform, mainly attention Floating on water surface. You can detect anything use it, but you need replace dataset in your task!
 <br>
-This platform identify and classify a kind of types of flaoting objects in real-time. while Flask provides a user-friendly interface for easy interaction with the platrofm.(•̃ ᴗ•̃)
+This platform identify and classify a kind of types of floating objects in real-time. while Flask provides a user-friendly interface for easy interaction with the platrofm.(•̃ ᴗ•̃)
 <br>
 this platform base on YoloV5🚀 object detect algorithm, and Flask, a Web framework.🎨
 
@@ -31,6 +31,9 @@ run as server:
 ```
 nohup python3 -u app.py > run.log 2>&1 &
 ```
+
+using nginx to deploying server. please reference some relative blog.
+
 
  
 ## Deployment
