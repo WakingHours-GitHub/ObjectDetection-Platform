@@ -1,5 +1,8 @@
 import sys
 import os
+import datetime
+
+
 # 工程化.
 from pathlib import Path
 FILE = Path(__file__).resolve() # 绝对路径.
@@ -22,4 +25,4 @@ SAVE_PATH = "./file"
 LOG_PATH = "./logs"
 
 
-# global IS_REALTIME
+
