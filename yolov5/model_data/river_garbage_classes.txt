@@ -1,0 +1,10 @@
+floating
+plastic-bag
+leaf
+bottle
+ball
+plastic-garbage
+milk-box
+branch
+can
+grass
