@@ -1,0 +1,34 @@
+run on: /root/ObjectDetection-Platform
+yolov5/model_data/best.pth model, and classes loaded.
+Configurations:
+----------------------------------------------------------------------
+|                     keys |                                   values|
+----------------------------------------------------------------------
+|               model_path |               yolov5/model_data/best.pth|
+|             classes_path | yolov5/model_data/river_garbage_classes.txt|
+|             anchors_path |       yolov5/model_data/yolo_anchors.txt|
+|             anchors_mask |        [[6, 7, 8], [3, 4, 5], [0, 1, 2]]|
+|              input_shape |                               [640, 640]|
+|                 backbone |                               cspdarknet|
+|                      phi |                                        s|
+|               confidence |                                      0.5|
+|                  nms_iou |                                      0.3|
+|          letterbox_image |                                     True|
+|                     cuda |                                    False|
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "app.py", line 23, in <module>
+    yolo = YOLO()
+  File "/root/ObjectDetection-Platform/yolov5/yolo.py", line 98, in __init__
+    self.generate()
+  File "/root/ObjectDetection-Platform/yolov5/yolo.py", line 111, in generate
+    self.net.load_state_dict(torch.load(self.model_path, map_location=device))
+  File "/usr/local/lib64/python3.6/site-packages/torch/serialization.py", line 607, in load
+    return _load(opened_zipfile, map_location, pickle_module, **pickle_load_args)
+  File "/usr/local/lib64/python3.6/site-packages/torch/serialization.py", line 882, in _load
+    result = unpickler.load()
+  File "/usr/local/lib64/python3.6/site-packages/torch/serialization.py", line 857, in persistent_load
+    load_tensor(data_type, size, key, _maybe_decode_ascii(location))
+  File "/usr/local/lib64/python3.6/site-packages/torch/serialization.py", line 845, in load_tensor
+    storage = zip_file.get_storage_from_record(name, size, dtype).storage()
+KeyboardInterrupt
