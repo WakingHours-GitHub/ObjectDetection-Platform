@@ -2,3 +2,5 @@ logs
 file
 run.log
 static/past
+__pycache__
+nohup.out
