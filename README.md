@@ -15,10 +15,9 @@ Due to the high cost of maintaining the server and limited resources, we regret 
 Although the website will no longer be available, the source code and resources will remain accessible on GitHub for anyone who wishes to explore or continue the project.
 
 Main website (archived):
-![Main Website](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/static/main_website.png)
-
+![Main Website](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/resources_md/main_website.png)
 Detected surface on water:
-![Detected Surface](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/static/detected.png)
+![Detected Surface](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/resources_md/detected.png)
 
 For any inquiries or further collaboration, feel free to reach out via GitHub or email. Thank you for being part of this journey!
 
