@@ -8,9 +8,9 @@ The platform is based on the YOLOv5🚀 object detection algorithm and Flask, a 
 
 ---
 
-## Update!!! (2026 Feb)
+## Update (2026 Feb)
 
-Due to the high cost of maintaining the server and limited resources, we regret to dedice that the website will be taken offline. We sincerely thank you for your support and interest in this project over the years. 🙏
+Due to the high cost of maintaining the server and limited resources, we regret to decide that the website will be taken offline. We sincerely thank you for your support and interest in this project over the years. 🙏
 
 Although the website will no longer be available, the source code and resources will remain accessible on GitHub for anyone who wishes to explore or continue the project.
 
