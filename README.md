@@ -8,6 +8,20 @@ The platform is based on the YOLOv5🚀 object detection algorithm and Flask, a 
 
 ---
 
+## Update!!! (2026 Feb)
+
+Due to the high cost of maintaining the server and limited resources, we regret to dedice that the website will be taken offline. We sincerely thank you for your support and interest in this project over the years. 🙏
+
+Although the website will no longer be available, the source code and resources will remain accessible on GitHub for anyone who wishes to explore or continue the project.
+
+Main website (archived):
+![Main Website](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/static/main_website.png)
+
+Detected surface on water:
+![Detected Surface](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/static/detected.png)
+
+For any inquiries or further collaboration, feel free to reach out via GitHub or email. Thank you for being part of this journey!
+
 ## Architecture
 ![Architecture](https://github.com/WakingHours-GitHub/surface-water-floating-detection-platform/blob/master/static/architecutre.svg)
 
